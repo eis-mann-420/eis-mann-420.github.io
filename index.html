@@ -30,15 +30,25 @@
             cursor: pointer;
         }
 
-        #info.hidden {
-            display: none;
+        .info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
 
-        #arrow {
+        .info p {
+            margin: 0;
+        }
+
+        .info.expanded {
+            max-height: 200px; /* Adjust as needed */
+        }
+
+        .arrow {
             transition: transform 0.3s ease;
         }
 
-        #arrow.rotate {
+        .arrow.rotate {
             transform: rotate(180deg);
         }
         </style>
@@ -54,19 +64,19 @@
                 <h2>eismann's website</h2>
                 <div class="title" onclick="toggleInfo('info1', 'arrow1')">
                     <span>introduction</span>
-                    <span id="arrow">▼</span>
+                    <span id="arrow1">▼</span>
                 </div>
                 <hr>
-                <div id="info1" class="hidden">
+                <div id="info1" class="info">
                     <p>hey, eismann here. i'm trying to practice shots in cs source as i'm 60% skilled, barely programming in html and python.</p>
                 </div>
 
                 <div class="title" onclick="toggleInfo('info2', 'arrow2')">
                     <span>contact</span>
-                    <span id="arrow">▼</span>
+                    <span id="arrow2">▼</span>
                 </div>
                 <hr>
-                <div id="info2" class="hidden">
+                <div id="info2" class="info">
                     <a href="mailto:eismann.4@proton.me">eismann.4@proton.me</a> <br />
                     <a href="https://snapchat.com/add/eismann_4">Snapchat</a>
                 </div>
@@ -78,16 +88,16 @@
             <p>&copy;eismann  | All rights reserved. (inspired by <a href="https://ubuntuman.dump.pw/">Ubuntu Man</a>)</p>
         </footer>
         <script>
-            function toggleInfo(infoId, arrowId) {
+             function toggleInfo(infoId, arrowId) {
             const info = document.getElementById(infoId);
             const arrow = document.getElementById(arrowId);
 
-            if (info.classList.contains('hidden')) {
-                info.classList.remove('hidden');
-                arrow.classList.add('rotate');
-            } else {
-                info.classList.add('hidden');
+            if (info.classList.contains('expanded')) {
+                info.classList.remove('expanded');
                 arrow.classList.remove('rotate');
+            } else {
+                info.classList.add('expanded');
+                arrow.classList.add('rotate');
             }
         }
         </script>
